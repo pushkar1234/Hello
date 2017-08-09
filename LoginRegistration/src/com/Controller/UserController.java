@@ -76,10 +76,13 @@ public class UserController {
 		System.out.println("/ method");
 		return "login";
 	}
-	@RequestMapping(value = "/relogin", method = RequestMethod.GET)
-    public String Front2(Model model) {
-    	model.addAttribute("error", "Error:UserName or Password is incorrect..!");
-    	return "login";
+	@RequestMapping(value="/relogin",method=RequestMethod.GET)
+	public String Front(Model model)
+	{
+		model.addAttribute("error", "Error:UserName or Password is incorrect..!");
+		
+		return "login";
+		
 	}
     @RequestMapping(value="/authenticate",method=RequestMethod.POST)
 	 public String authenticate(@RequestParam("uname")String userName,@RequestParam("pass")String userPassword,
@@ -99,7 +102,7 @@ public class UserController {
 	    	}
 			
 	    	
-	    	return "redirect:/";
+	    	return "redirect:/relogin";
 	    }
 	 @RequestMapping(value = "/add", method = RequestMethod.POST)
 	 public String submitForm(@ModelAttribute("user") User user,
